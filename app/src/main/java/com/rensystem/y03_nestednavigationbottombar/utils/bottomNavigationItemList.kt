@@ -12,28 +12,30 @@ import androidx.compose.material.icons.outlined.Settings
 import com.rensystem.y03_nestednavigationbottombar.navigation.MainRouteScreen
 import com.rensystem.y03_nestednavigationbottombar.navigation.NavigationItem
 
+//bottomNavigationItemList.kt
+
 val bottomNavigationItemList = listOf(
     NavigationItem(
         title = "Home",
-        route = MainRouteScreen.Home.route,
+        route = MainRouteScreen.Home, // Ahora pasamos el objeto, no un String
         selectedIcon = Icons.Filled.Home,
         unselectedIcon = Icons.Outlined.Home,
     ),
     NavigationItem(
         title = "Profile",
-        route = MainRouteScreen.Profile.route,
+        route = MainRouteScreen.Profile,
         selectedIcon = Icons.Filled.Person,
         unselectedIcon = Icons.Outlined.Person,
     ),
     NavigationItem(
         title = "Notifications",
-        route = MainRouteScreen.Notification.route,
+        route = MainRouteScreen.Notification,
         selectedIcon = Icons.Filled.Notifications,
         unselectedIcon = Icons.Outlined.Notifications,
     ),
     NavigationItem(
         title = "Settings",
-        route = MainRouteScreen.Setting.route,
+        route = MainRouteScreen.Setting,
         selectedIcon = Icons.Filled.Settings,
         unselectedIcon = Icons.Outlined.Settings,
     )

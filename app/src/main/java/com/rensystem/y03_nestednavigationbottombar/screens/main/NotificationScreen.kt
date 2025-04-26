@@ -38,7 +38,7 @@ fun NotificationScreen(
         Spacer(Modifier.height(40.dp))
 
         Button(onClick = {
-            navController.navigate(NotificationRouteScreen.NotificationDetail.route)
+            navController.navigate(NotificationRouteScreen.NotificationDetail)
         }) {
             Text("Go to Notification Detail Page", color = Color.White)
         }

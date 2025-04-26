@@ -39,7 +39,7 @@ fun SettingScreen(
         Spacer(Modifier.height(40.dp))
 
         Button(onClick = {
-            navController.navigate(SettingRouteScreen.SettingDetail.route)
+            navController.navigate(SettingRouteScreen.SettingDetail)
 
         }) {
             Text("Setting Detail Screen", color = Color.White)

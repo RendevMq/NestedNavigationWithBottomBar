@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
@@ -108,8 +107,8 @@ fun LoginScreen(navController: NavController) {
         // Botón de login
         Button(
             onClick = {
-                navController.navigate(Graph.MainScreenGraph){
-                    popUpTo(AuthRouteScreen.Login.route){
+                navController.navigate(Graph.MainGraph){
+                    popUpTo(AuthRouteScreen.Login){
                         inclusive = true
                     }
                 }
@@ -125,7 +124,7 @@ fun LoginScreen(navController: NavController) {
         // Botón de "Olvidé mi contraseña"
         TextButton(
             onClick = {
-                navController.navigate(AuthRouteScreen.Forget.route) // Navegar a la pantalla de recuperación de contraseña
+                navController.navigate(AuthRouteScreen.ForgotPassword) // Navegar a la pantalla de recuperación de contraseña
             }
         ) {
             Text(text = "Olvidé mi contraseña", color = MaterialTheme.colorScheme.primary)
@@ -136,7 +135,7 @@ fun LoginScreen(navController: NavController) {
         // Botón de "Registrarse"
         TextButton(
             onClick = {
-                navController.navigate(AuthRouteScreen.SignUp.route) // Navegar a la pantalla de registro
+                navController.navigate(AuthRouteScreen.SignUp) // Navegar a la pantalla de registro
             }
         ) {
             Text(
