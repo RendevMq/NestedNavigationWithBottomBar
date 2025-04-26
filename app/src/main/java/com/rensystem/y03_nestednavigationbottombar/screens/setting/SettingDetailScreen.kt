@@ -37,8 +37,8 @@ fun SettingDetailScreen(
         )
         Spacer(Modifier.height(40.dp))
         Button(onClick = {
-            rootNavController.navigate(AuthRouteScreen.Login.route){
-                popUpTo(Graph.MainScreenGraph){
+            rootNavController.navigate(AuthRouteScreen.Login){
+                popUpTo(Graph.MainGraph){
                     inclusive=true
                 }
                 launchSingleTop = true

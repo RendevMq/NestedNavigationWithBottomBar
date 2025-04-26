@@ -128,8 +128,8 @@ fun RegisterScreen(navController: NavController) {
         // Botón de registrar
         Button(
             onClick = {
-                navController.navigate(Graph.MainScreenGraph){
-                    popUpTo(AuthRouteScreen.SignUp.route){
+                navController.navigate(Graph.MainGraph){
+                    popUpTo(AuthRouteScreen.SignUp){
                         inclusive = true
                     }
                 }

@@ -1,6 +1,5 @@
 package com.rensystem.y03_nestednavigationbottombar.navigation.graphs
 
-import androidx.compose.runtime.Composable
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
@@ -11,19 +10,17 @@ import com.rensystem.y03_nestednavigationbottombar.screens.auth.ForgotPasswordSc
 import com.rensystem.y03_nestednavigationbottombar.screens.auth.LoginScreen
 import com.rensystem.y03_nestednavigationbottombar.screens.auth.RegisterScreen
 
+//AuthNavGraph.kt
 fun NavGraphBuilder.authNavGraph(rootNavController: NavHostController) {
     // Aquí estamos creando un sub-gráfico de navegación para las rutas de autenticación
-    navigation(
-        route = Graph.AuthGraph,
-        startDestination = AuthRouteScreen.Login.route
-    ){
-        composable(route = AuthRouteScreen.Login.route) {
+    navigation<Graph.AuthGraph>(startDestination = AuthRouteScreen.Login) {
+        composable<AuthRouteScreen.Login> {
             LoginScreen(navController = rootNavController)
         }
-        composable(route = AuthRouteScreen.SignUp.route) {
+        composable<AuthRouteScreen.SignUp> {
             RegisterScreen(navController = rootNavController)
         }
-        composable(route = AuthRouteScreen.Forget.route) {
+        composable<AuthRouteScreen.ForgotPassword> {
             ForgotPasswordScreen(navController = rootNavController)
         }
     }

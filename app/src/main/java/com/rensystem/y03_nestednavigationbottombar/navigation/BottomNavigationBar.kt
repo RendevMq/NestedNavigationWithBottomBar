@@ -1,5 +1,6 @@
 package com.rensystem.y03_nestednavigationbottombar.navigation
 
+import android.util.Log
 import androidx.compose.material3.Badge
 import androidx.compose.material3.BadgedBox
 import androidx.compose.material3.Icon
@@ -10,32 +11,39 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
+//BottomNavigationBar.kt
 @Composable
 fun BottomNavigationBar(
     items: List<NavigationItem>,
     currentRoute: String?,
     onClick: (NavigationItem) -> Unit,
 ) {
+    Log.i("Renato", currentRoute?:"")
     NavigationBar(
-//        containerColor = Color.Transparent
+//        containerColor = Color.Red
     ) {
-        items.forEachIndexed { index, navigationItem ->
+        items.forEach { navigationItem ->
             NavigationBarItem(
                 colors = NavigationBarItemDefaults.colors(),
-                selected = currentRoute == navigationItem.route,
+                selected = navigationItem.route::class.simpleName == currentRoute,
                 onClick = { onClick(navigationItem) },
                 icon = {
-                    BadgedBox(badge = {
-                        if (navigationItem.badgeCount != null) {
-                            Badge{
-                                Text(text = navigationItem.badgeCount.toString())
+                    BadgedBox(
+                        badge = {
+                            when {
+                                navigationItem.badgeCount != null -> {
+                                    Badge {
+                                        Text(text = navigationItem.badgeCount.toString())
+                                    }
+                                }
+                                navigationItem.hasBadgeDot -> {
+                                    Badge()
+                                }
                             }
-                        } else if (navigationItem.hasBadgeDot) {
-                            Badge()
                         }
-                    }) {
+                    ) {
                         Icon(
-                            imageVector = if (currentRoute == navigationItem.route) {
+                            imageVector = if (navigationItem.route::class.simpleName == currentRoute) {
                                 navigationItem.selectedIcon
                             } else {
                                 navigationItem.unselectedIcon

@@ -1,30 +1,56 @@
 package com.rensystem.y03_nestednavigationbottombar.navigation
+import kotlinx.serialization.Serializable
 
-object Graph {
-    const val RootGraph = "rootGraph"
-    const val AuthGraph = "authGraph"
-    const val MainScreenGraph = "mainScreenGraph"
-    const val NotificationGraph = "notificationGraph"
-    const val SettingGraph = "settingGraph"
+//Routes.kt
+// Gráficos principales
+@Serializable
+sealed interface Graph {
+    @Serializable
+    data object RootGraph : Graph
+    @Serializable
+    data object AuthGraph : Graph
+    @Serializable
+    data object MainGraph : Graph
+    @Serializable
+    data object NotificationGraph : Graph
+    @Serializable
+    data object SettingGraph : Graph
 }
 
-sealed class AuthRouteScreen(val route: String) {
-    data object Login : AuthRouteScreen("login")
-    data object Forget : AuthRouteScreen("forget")
-    data object SignUp : AuthRouteScreen("signUp")
+// Pantallas dentro del flujo de autenticación (Auth)
+@Serializable
+sealed interface AuthRouteScreen {
+    @Serializable
+    data object Login : AuthRouteScreen
+    @Serializable
+    data object SignUp : AuthRouteScreen
+    @Serializable
+    data object ForgotPassword : AuthRouteScreen
 }
 
-sealed class MainRouteScreen(val route: String) {
-    data object Home : MainRouteScreen("home")
-    data object Profile : MainRouteScreen("profile")
-    data object Notification : MainRouteScreen("notification")
-    data object Setting : MainRouteScreen("setting")
+// Pantallas dentro del flujo principal (Main), que van en el Bottom Bar
+@Serializable
+sealed interface MainRouteScreen {
+    @Serializable
+    data object Home : MainRouteScreen
+    @Serializable
+    data object Profile : MainRouteScreen
+    @Serializable
+    data object Notification : MainRouteScreen
+    @Serializable
+    data object Setting : MainRouteScreen
 }
 
-sealed class NotificationRouteScreen(val route: String) {
-    data object NotificationDetail : NotificationRouteScreen("notificationDetail")
+// Pantallas del flujo de notificaciones
+@Serializable
+sealed interface NotificationRouteScreen {
+    @Serializable
+    data object NotificationDetail : NotificationRouteScreen
 }
 
-sealed class SettingRouteScreen(val route: String) {
-    data object SettingDetail : SettingRouteScreen("settingDetail")
+// Pantallas del flujo de configuración
+@Serializable
+sealed interface SettingRouteScreen {
+    @Serializable
+    data object SettingDetail : SettingRouteScreen
 }

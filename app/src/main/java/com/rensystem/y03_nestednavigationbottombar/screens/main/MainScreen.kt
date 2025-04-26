@@ -18,46 +18,37 @@ import com.rensystem.y03_nestednavigationbottombar.navigation.BottomNavigationBa
 import com.rensystem.y03_nestednavigationbottombar.navigation.graphs.MainGraph
 import com.rensystem.y03_nestednavigationbottombar.utils.bottomNavigationItemList
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen(
     rootNavHostController: NavHostController,
     homeNavController: NavHostController = rememberNavController()
 ) {
-
     val navBackStackEntry by homeNavController.currentBackStackEntryAsState()
-    val currentRoute = navBackStackEntry?.destination?.route
 
-    val derivedState = remember {
-        derivedStateOf { navBackStackEntry?.destination?.route }
-    }
+    val currentRoute = navBackStackEntry?.destination?.route?.substringAfterLast('.')
 
     val topBarTitle by remember(currentRoute) {
         derivedStateOf {
-            if (currentRoute != null) {
-                bottomNavigationItemList.firstOrNull { it.route == currentRoute }?.title
-                    ?: "Default Title"
-            } else {
-                bottomNavigationItemList[0].title
-            }
+            bottomNavigationItemList
+                .firstOrNull { it.route::class.simpleName == currentRoute }
+                ?.title ?: bottomNavigationItemList.first().title
         }
     }
 
     Scaffold(
         topBar = {
             TopAppBar(
-                title = {
-                    Text(text = topBarTitle)
-                }
+                title = { Text(text = topBarTitle) }
             )
         },
         bottomBar = {
             BottomNavigationBar(
                 items = bottomNavigationItemList,
-                currentRoute = currentRoute ?: bottomNavigationItemList[0].route,
+                currentRoute = currentRoute,
                 onClick = { item ->
                     homeNavController.navigate(item.route) {
-                        // Controlar la navegación
+                        // Navegación segura
                         popUpTo(homeNavController.graph.startDestinationRoute ?: "") {
                             saveState = true
                         }

@@ -21,7 +21,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             Y03_nestedNavigationBottomBarTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    RootNavGraph(true)
+                    RootNavGraph(false)
                 }
             }
         }
