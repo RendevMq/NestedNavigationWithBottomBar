@@ -11,9 +11,14 @@ import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material.icons.outlined.Settings
 import com.rensystem.y03_nestednavigationbottombar.navigation.MainRouteScreen
 import com.rensystem.y03_nestednavigationbottombar.navigation.NavigationItem
+import androidx.navigation.NavBackStackEntry
+
+//Funcion de extension para extraer el último pedazo del route
+fun NavBackStackEntry?.simpleRoute(): String? {
+    return this?.destination?.route?.substringAfterLast('.')
+}
 
 //bottomNavigationItemList.kt
-
 val bottomNavigationItemList = listOf(
     NavigationItem(
         title = "Home",
@@ -40,3 +45,4 @@ val bottomNavigationItemList = listOf(
         unselectedIcon = Icons.Outlined.Settings,
     )
 )
+

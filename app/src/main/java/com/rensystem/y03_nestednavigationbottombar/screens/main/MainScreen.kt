@@ -10,6 +10,7 @@ import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -17,6 +18,11 @@ import androidx.navigation.compose.rememberNavController
 import com.rensystem.y03_nestednavigationbottombar.navigation.BottomNavigationBar
 import com.rensystem.y03_nestednavigationbottombar.navigation.graphs.MainGraph
 import com.rensystem.y03_nestednavigationbottombar.utils.bottomNavigationItemList
+
+
+fun NavBackStackEntry?.simpleRoute(): String? {
+    return this?.destination?.route?.substringAfterLast('.')
+}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -26,7 +32,8 @@ fun MainScreen(
 ) {
     val navBackStackEntry by homeNavController.currentBackStackEntryAsState()
 
-    val currentRoute = navBackStackEntry?.destination?.route?.substringAfterLast('.')
+//    val currentRoute = navBackStackEntry?.destination?.route?.substringAfterLast('.')
+    val currentRoute = navBackStackEntry.simpleRoute() //Con la funcion de extension de UTILS
 
     val topBarTitle by remember(currentRoute) {
         derivedStateOf {
